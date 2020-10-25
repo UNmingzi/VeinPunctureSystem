@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/picture">
+        <file>Image/main.jpg</file>
+        <file>Image/3d.jpg</file>
+        <file>Image/left.png</file>
+        <file>Image/right.png</file>
+        <file>Image/cut.png</file>
+        <file>Image/start.jpg</file>
+        <file>Image/background.jpg</file>
+        <file>Image/background2.jpg</file>
+        <file>Image/icon.png</file>
+    </qresource>
+</RCC>

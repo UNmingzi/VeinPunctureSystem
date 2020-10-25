@@ -1,0 +1,73 @@
+#include "mythread.h"
+#include "myaxesdriver.h"
+
+MyThread::MyThread(TrioPC *pcMatParent, MyAxesDriver *axesControlParent)                                     //驱动器对象指针
+{
+    pcMat=pcMatParent;                                                                      //传递对象指针
+    axesControl = axesControlParent;
+}
+
+void MyThread::closeThread()            //关闭线程
+{
+
+}
+
+void MyThread::run()                    //线程运行函数
+{
+    int axesZeroCount = 0;
+    AXES_TOZERO_FLAG = false;
+    //qDebug()<<tr("mythread QThread::currentThreadId()==")<<QThread::currentThreadId();              //多线程ID
+
+    while (safe_flag)
+    {
+        /*线程循环函数*/
+      for(int i = 0; i < AXES_COUNT; i++)
+        {
+            if(qAbs(axesControl->axisGetTorque(i)) > TORQUE_LIMIT[i])
+            {
+                if(!AXIS_TOZERO_FLAG[i])//该轴未寻零则触发寻零函数，否则直接进行力矩检测
+                {
+                    qDebug()<<tr("运动停止，轴：")<<i;                                               //多线程停止轴
+                    pcMat->Cancel(0, i);
+                    pcMat->Cancel(1, i);
+
+                    axesControl->axisInMoveRev(i, AXES_RETURN[i]);                                  //相对运动
+                    AXIS_TOZERO_FLAG[i] = true;
+                    axesZeroCount++;
+                    if(axesZeroCount == 6)//所有轴都回零位
+                    {
+                        qDebug()<<tr("注意：所有轴已到零位");
+                        while(axesControl->axesIsRuning());                                         //等待所有轴运动停止
+                        axesControl->axesGetZeroPos();                                              //获取零点位置
+                        AXES_TOZERO_FLAG = true;
+                        axesZeroCount = 0;
+
+                       //while(axesControl->axesIsRuning());                                         //等待所有轴运动停止
+                        //double moveOutPos1[6] = {10, 10, 20, 20, 10, 1};
+                        //axesControl->axesOutMoveAbs(AXES_COUNT, moveOutPos1);
+
+                        //while(axesControl->axesIsRuning());                                         //等待所有轴运动停止
+
+                        //double jointsPos[6] = {30, 35, 75, 0, 20, 10};                              //运动到关节角
+                        //axesControl->jointsOutMoveAbs(AXES_COUNT, jointsPos);
+
+                        //qDebug()<<tr("开始执行逆运动学操作");
+                       // double posArray[6] = {130, 40, -20, 20, 15, 10};
+                       // MyAlgorithm::invKinematics(posArray, jointsPos);
+
+                       // axesControl->jointsOutMoveAbs(AXES_COUNT, jointsPos);
+
+                    }
+                }
+                /*if(qAbs(axesControl->axisGetTorque(i)) > TORQUE_MAX[i])                             //超过保护力矩
+                {
+                    qDebug()<<tr("触发电流保护，轴：")<<i;
+                    pcMat->SetAxisVariable(tr("WDOG"),0, false);                                    //各轴失能
+                    return;
+                }*/
+            }
+        }
+        msleep(50);
+    }
+
+}

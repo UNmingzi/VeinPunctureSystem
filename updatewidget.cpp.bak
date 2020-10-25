@@ -1,0 +1,73 @@
+#include "updatewidget.h"
+#include <QPainter>
+#include <QRect>
+#include <QBrush>
+#include <QFont>
+#include <QPainter>
+#include "ui_mainwindow.h"
+
+updateWidget::updateWidget(Ui::MainWindow *ui)
+{
+   gui=ui;
+   connect(this,SIGNAL(updateWidgetSignal()),this,SLOT(slotUpate()));
+}
+
+updateWidget::~updateWidget()
+{
+
+}
+
+void updateWidget::run()
+{
+    QImage* image=new QImage;
+    while(1)
+    {
+
+        image->load(":/picture/Image/left.png");
+        QImage resultImg = image->scaled(gui->leftPicture->size(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
+        gui->leftPicture->setPixmap(QPixmap::fromImage(resultImg));
+        //gui->leftPicture->show();
+
+        resultImg = image->scaled(gui->left->size(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
+        gui->left->setPixmap(QPixmap::fromImage(resultImg));
+        //gui->left->show();
+
+        image->load(":/picture/Image/right.png");
+        resultImg = image->scaled(gui->rightPicture->size(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
+        gui->rightPicture->setPixmap(QPixmap::fromImage(resultImg));
+        //gui->rightPicture->show();
+
+
+        resultImg = image->scaled(gui->right->size(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
+        gui->right->setPixmap(QPixmap::fromImage(resultImg));
+        //gui->right->show();
+
+        image->load(":/picture/Image/3d.jpg");
+        resultImg = image->scaled(gui->threeDimen->size(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
+        gui->threeDimen->setPixmap(QPixmap::fromImage(resultImg));
+        //gui->threeDimen->show();
+
+        resultImg = image->scaled(gui->threeDimension->size(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
+        gui->threeDimension->setPixmap(QPixmap::fromImage(resultImg));
+        //gui->threeDimension->show();
+
+        image->load(":/picture/Image/cut.png");
+        resultImg = image->scaled(gui->cut->size(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
+        gui->cut->setPixmap(QPixmap::fromImage(resultImg));
+        //gui->cut->show();
+
+        resultImg = image->scaled(gui->cut2->size(),Qt::KeepAspectRatio,Qt::SmoothTransformation);
+        gui->cut2->setPixmap(QPixmap::fromImage(resultImg));
+        //gui->cut2->show();
+
+        msleep(20);
+    }
+}
+
+void updateWidget::slotUpate()
+{
+
+
+   //gui->nowPositionDisplay();
+   //gui->display_axes_status();
+}

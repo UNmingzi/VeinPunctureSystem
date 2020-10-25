@@ -1,0 +1,37 @@
+#include "safethread.h"
+bool safe_flag=true;
+
+SafeThread::SafeThread(TrioPC *pcMatParent, MyAxesDriver *axesControlParent)
+{
+    pcMat=pcMatParent;                                                                      //传递对象指针
+    axesControl = axesControlParent;
+    Safe_isStop=false;
+}
+
+void SafeThread::closeSafeThread()
+{
+   Safe_isStop=true;
+}
+
+void SafeThread::run()
+{
+
+    qDebug()<<tr("开启保护线程");
+    while(1)
+    {
+        if(Safe_isStop)
+            return;
+         for(int i = 0; i < AXES_COUNT; i++)
+        {
+        if(qAbs(axesControl->axisGetTorque(i)) > TORQUE_MAX[i])                             //超过保护力矩
+        {
+            qDebug()<<tr("触发电流保护，轴：")<<i;
+            pcMat->SetAxisVariable(tr("WDOG"),0, false);                                    //各轴失能
+            safe_flag=false;
+        }
+        }
+            msleep(50);
+    }
+
+
+}
