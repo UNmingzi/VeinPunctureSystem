@@ -41,7 +41,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     ui->setupUi(this);
-    this->setFixedSize(1264,645);                                           //固定界面大小
+    //this->setFixedSize(1264,645);                                           //固定界面大小
     this->setWindowIcon(QIcon(":/picture/Image/icon.png"));
     ui->radioButtonMode2->setChecked(1);
     ui->enable_light->setRed();
@@ -52,7 +52,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QPalette pal = this->palette();
     pal.setBrush(backgroundRole(), QPixmap(":/picture/Image/background2.jpg"));
     setPalette(pal);
-    picInit();                                                              //界面显示初始化
+//    picInit();                                                              //界面显示初始化
 
     /*实例化对象*/
     pcMat = new TrioPC;
@@ -79,12 +79,12 @@ MainWindow::MainWindow(QWidget *parent) :
     //串口初始化
     m_serialPort = new QSerialPort();
     m_portNameList = getPortNameList();
-    QString tmp0 =  m_portNameList.at(0);
-    qDebug()<<"tmp0 ="<< tmp0;
+//    QString tmp0 =  m_portNameList.at(0);
+//    qDebug()<<"tmp0 ="<< tmp0;
 //    QString tmp1 =  m_portNameList.at(1);
 //    qDebug()<<"tmp1 ="<< tmp1;
 
-    openPort();
+//    openPort();
 }
 
 MainWindow::~MainWindow()
@@ -221,7 +221,7 @@ void MainWindow::openPort()
     m_serialPort->setFlowControl(QSerialPort::NoFlowControl);//无流控制
     m_serialPort->setParity(QSerialPort::NoParity); //无校验位
     m_serialPort->setStopBits(QSerialPort::OneStop); //一位停止位
-//    connect(m_serialPort,SIGNAL(readyRead()),this,SLOT(receiveInfo()));
+    //connect(m_serialPort,SIGNAL(readyRead()),this,SLOT(receiveInfo()));
 }
 
 //接收到单片机发送的数据进行解析
@@ -1332,46 +1332,46 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 
 void  MainWindow::paintEvent(QPaintEvent *e)
 {
-    Mat RGBLeft=threadUpdatePic->RGBLeft;
-    Mat RGBRight=threadUpdatePic->RGBRight;
-    Mat imageCut=threadUpdatePic->imageCut;
-    Mat dispRGB=threadUpdatePic->dispRGB;
+//    Mat RGBLeft=threadUpdatePic->RGBLeft;
+//    Mat RGBRight=threadUpdatePic->RGBRight;
+//    Mat imageCut=threadUpdatePic->imageCut;
+//    Mat dispRGB=threadUpdatePic->dispRGB;
 
-    QImage imageLeft(RGBLeft.data,RGBLeft.cols,RGBLeft.rows,QImage::Format_RGB888);
-    ui->picLeft2->setPixmap(QPixmap::fromImage(imageLeft));
-    ui->picLeft2->resize(imageLeft.size());
-    ui->picLeft2->show();
-    imageLeft=imageLeft.scaled(320,240);
-    ui->picLeft->setPixmap(QPixmap::fromImage(imageLeft));
-    ui->picLeft->resize(imageLeft.size());
-    ui->picLeft->show();
+//    QImage imageLeft(RGBLeft.data,RGBLeft.cols,RGBLeft.rows,QImage::Format_RGB888);
+//    ui->picLeft2->setPixmap(QPixmap::fromImage(imageLeft));
+//    ui->picLeft2->resize(imageLeft.size());
+//    ui->picLeft2->show();
+//    imageLeft=imageLeft.scaled(320,240);
+//    ui->picLeft->setPixmap(QPixmap::fromImage(imageLeft));
+//    ui->picLeft->resize(imageLeft.size());
+//    ui->picLeft->show();
 
-    QImage imageRight(RGBRight.data,RGBRight.cols,RGBRight.rows,QImage::Format_RGB888);
-    ui->picRight2->setPixmap(QPixmap::fromImage(imageRight));
-    ui->picRight2->resize(imageRight.size());
-    ui->picRight2->show();
-    imageRight=imageRight.scaled(320,240);
-    ui->picRight->setPixmap(QPixmap::fromImage(imageRight));
-    ui->picRight->resize(imageRight.size());
-    ui->picRight->show();
+//    QImage imageRight(RGBRight.data,RGBRight.cols,RGBRight.rows,QImage::Format_RGB888);
+//    ui->picRight2->setPixmap(QPixmap::fromImage(imageRight));
+//    ui->picRight2->resize(imageRight.size());
+//    ui->picRight2->show();
+//    imageRight=imageRight.scaled(320,240);
+//    ui->picRight->setPixmap(QPixmap::fromImage(imageRight));
+//    ui->picRight->resize(imageRight.size());
+//    ui->picRight->show();
 
-    QImage imageCutQ(imageCut.data,imageCut.cols,imageCut.rows,QImage::Format_RGB888);
-    ui->picCut2->setPixmap(QPixmap::fromImage(imageCutQ));
-    ui->picCut2->resize(imageCutQ.size());
-    ui->picCut2->show();
-    imageCutQ=imageCutQ.scaled(320,240);
-    ui->picCut->setPixmap(QPixmap::fromImage(imageCutQ));
-    ui->picCut->resize(imageCutQ.size());
-    ui->picCut->show();
+//    QImage imageCutQ(imageCut.data,imageCut.cols,imageCut.rows,QImage::Format_RGB888);
+//    ui->picCut2->setPixmap(QPixmap::fromImage(imageCutQ));
+//    ui->picCut2->resize(imageCutQ.size());
+//    ui->picCut2->show();
+//    imageCutQ=imageCutQ.scaled(320,240);
+//    ui->picCut->setPixmap(QPixmap::fromImage(imageCutQ));
+//    ui->picCut->resize(imageCutQ.size());
+//    ui->picCut->show();
 
-    QImage imageDisp(dispRGB.data,dispRGB.cols,dispRGB.rows,QImage::Format_RGB888);
-    ui->picPcl2->setPixmap(QPixmap::fromImage(imageDisp));
-    ui->picPcl2->resize(imageDisp.size());
-    ui->picPcl2->show();
-    imageDisp=imageDisp.scaled(320,240);
-    ui->picPcl->setPixmap(QPixmap::fromImage(imageDisp));
-    ui->picPcl->resize(imageDisp.size());
-    ui->picPcl->show();
+//    QImage imageDisp(dispRGB.data,dispRGB.cols,dispRGB.rows,QImage::Format_RGB888);
+//    ui->picPcl2->setPixmap(QPixmap::fromImage(imageDisp));
+//    ui->picPcl2->resize(imageDisp.size());
+//    ui->picPcl2->show();
+//    imageDisp=imageDisp.scaled(320,240);
+//    ui->picPcl->setPixmap(QPixmap::fromImage(imageDisp));
+//    ui->picPcl->resize(imageDisp.size());
+//    ui->picPcl->show();
 
 }
 

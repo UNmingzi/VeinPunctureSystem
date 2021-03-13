@@ -36,7 +36,7 @@ F:\OPENCV\opencv\build\include\
 #F:/OPENCV/opencv/build/include
 
 LIBS += \
-F:/OPENCV/opencv/build/x64/vc15/lib/opencv_world400d.lib
+F:\OPENCV\opencv\build\x64\vc15\lib\opencv_world400d.lib
 F:\OPENCV\opencv\build\x64\vc15\lib\opencv_world400.lib
 
 CONFIG += c++11
