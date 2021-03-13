@@ -28,13 +28,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 INCLUDEPATH += \
-C:\opencv\opencv\build\include\opencv2\
-C:\opencv\opencv\build\include\opencv\
-C:\opencv\opencv\build\include
+F:\OPENCV\opencv\build\include\opencv2\
+F:\OPENCV\opencv\build\include\opencv\
+F:\OPENCV\opencv\build\include\
+#F:/OPENCV/opencv/build/include/opencv2/
+#F:/OPENCV/opencv/build/include/opencv/
+#F:/OPENCV/opencv/build/include
 
 LIBS += \
-C:\opencv\opencv\build\x64\vc15\lib\opencv_world400d.lib
-C:\opencv\opencv\build\x64\vc15\lib\opencv_world400.lib
+F:/OPENCV/opencv/build/x64/vc15/lib/opencv_world400d.lib
+F:\OPENCV\opencv\build\x64\vc15\lib\opencv_world400.lib
 
 CONFIG += c++11
 
@@ -77,3 +80,9 @@ DISTFILES +=
 
 RESOURCES += \
     image.qrc
+
+#win64:CONFIG(release, debug|release): LIBS += -LF:/OPENCV/opencv/build/x64/vc15/lib/ -lopencv_world400
+#else:win64:CONFIG(debug, debug|release): LIBS += -LF:/OPENCV/opencv/build/x64/vc15/lib/ -lopencv_world400d
+
+#INCLUDEPATH += F:/OPENCV/opencv/build/x64/vc15
+#DEPENDPATH += F:/OPENCV/opencv//build/x64/vc15

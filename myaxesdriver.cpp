@@ -32,7 +32,7 @@ static double DATUM_IN[6] = {-1, -1, -1, -1, -1, -1};                           
 double TORQUE_LIMIT[6] = {1500, 1100, 800, 1200, 1000, 1100};                    //寻零力矩限制
 double TORQUE_MAX[6] = {3000, 3000, 3000, 2500, 2500, 3000};                    //最大力矩限制
 static double AXES_OUT_LIMIT[6] = {150, 55, 65, 85, 30, 20};                     //各轴绝对运动最大限位
-static double JOINTS_LIMIT_MIN[6] = {3, 18, 60, -50, -5, 1};                     //各关节运动最小限位
+static double JOINTS_LIMIT_MIN[6] = {3, 18, 60, -50, -15, 1};                     //各关节运动最小限位
 static double JOINTS_LIMIT_MAX[6] = {75, 75, 125, 40, 20, 20};                  //各关节运动最大限位
 
 

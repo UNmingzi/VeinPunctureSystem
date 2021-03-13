@@ -81,8 +81,8 @@ MainWindow::MainWindow(QWidget *parent) :
     m_portNameList = getPortNameList();
     QString tmp0 =  m_portNameList.at(0);
     qDebug()<<"tmp0 ="<< tmp0;
-    QString tmp1 =  m_portNameList.at(1);
-    qDebug()<<"tmp1 ="<< tmp1;
+//    QString tmp1 =  m_portNameList.at(1);
+//    qDebug()<<"tmp1 ="<< tmp1;
 
     openPort();
 }

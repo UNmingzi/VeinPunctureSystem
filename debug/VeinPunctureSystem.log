@@ -1,0 +1,27 @@
+﻿  Generate moc_predefs.h
+  Uic'ing loginform.ui...
+  Uic'ing mainwindow.ui...
+  Rcc'ing image.qrc...
+  Moc'ing flatui.h...
+  Moc'ing loginform.h...
+  Moc'ing mainwindow.h...
+  Moc'ing myalgorithm.h...
+  Moc'ing updatepicthread.h...
+  flatui.cpp
+  loginform.cpp
+  main.cpp
+  mainwindow.cpp
+f:\renhao\new\program\veinpuncturesystem-v9\recordthread.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (编译源文件 mainwindow.cpp)
+f:\renhao\new\program\veinpuncturesystem-v9\recordthread.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (编译源文件 main.cpp)
+  myalgorithm.cpp
+  myaxesdriver.cpp
+  recordthread.cpp
+f:\renhao\new\program\veinpuncturesystem-v9\recordthread.cpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+f:\renhao\new\program\veinpuncturesystem-v9\recordthread.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (编译源文件 recordthread.cpp)
+  safethread.cpp
+f:\renhao\new\program\veinpuncturesystem-v9\updatepicthread.h(7): fatal error C1083: 无法打开包括文件: “opencv2/opencv.hpp”: No such file or directory (编译源文件 mainwindow.cpp)
+  tozerothread.cpp
+  triopc.cpp
+  updatepicthread.cpp
+f:\renhao\new\program\veinpuncturesystem-v9\recordthread.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (编译源文件 updatepicthread.cpp)
+f:\renhao\new\program\veinpuncturesystem-v9\updatepicthread.h(7): fatal error C1083: 无法打开包括文件: “opencv2/opencv.hpp”: No such file or directory (编译源文件 updatepicthread.cpp)

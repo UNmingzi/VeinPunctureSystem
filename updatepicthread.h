@@ -28,6 +28,7 @@
 #include <QPainter>
 #include <QPaintEvent>
 #include <QMouseEvent>
+#include <opencv2/opencv.hpp>
 
 QT_CHARTS_USE_NAMESPACE//QtChart名空间
 using namespace QtCharts;
