@@ -1,4 +1,7 @@
-﻿#ifndef MAINWINDOW_H
+﻿#if _MSC_VER >= 1900
+#pragma execution_character_set("utf-8")
+#endif
+#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
@@ -17,6 +20,7 @@
 #include "recordthread.h"
 #include "myaxesdriver.h"
 #include "myalgorithm.h"
+#include "laser.h"
 
 #include <QChartView>
 #include <QLineSeries>
@@ -134,6 +138,14 @@ private slots:              //信号槽？
     void on_run_clicked();
     void on_testButton_clicked();
 
+
+    //laser port slot
+    void on_btn_open_clicked();
+    void on_btn_close_clicked();
+    void on_btn_searchport_clicked();
+    void laser_receive_data();     //laser receive data
+    void on_btn_measure_clicked();
+
 private:
 
     QTimer *timer;                                      //定时器
@@ -145,12 +157,16 @@ private:
     QStringList m_portNameList;                         //串口列表
     Ui::MainWindow *ui;
 
-
+    QSerialPort laserPort;                              //激光串口变量
+    QByteArray laserDataProcess(QByteArray data);       //激光返回值处理
 
     void picInit();                                     //图像显示初始化
+
+
+
 protected:
-    void MainWindow::mousePressEvent(QMouseEvent *event);
-    void MainWindow::paintEvent(QPaintEvent *e);
+    void mousePressEvent(QMouseEvent *event);
+    void paintEvent(QPaintEvent *e);
 
 };
 

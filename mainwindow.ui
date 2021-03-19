@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1374</width>
-    <height>746</height>
+    <width>1445</width>
+    <height>690</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -50,7 +50,7 @@
      <string notr="true">background-color:rgba(255,255,255,10);</string>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab_all">
      <attribute name="title">
@@ -234,32 +234,6 @@
        </rect>
       </property>
      </widget>
-     <widget class="QWidget" name="verticalLayoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>810</x>
-        <y>530</y>
-        <width>69</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QRadioButton" name="radioButtonMode1">
-         <property name="text">
-          <string>模式1</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="radioButtonMode2">
-         <property name="text">
-          <string>模式2</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
     </widget>
    </widget>
    <widget class="QToolBox" name="toolBox">
@@ -267,8 +241,8 @@
      <rect>
       <x>880</x>
       <y>30</y>
-      <width>371</width>
-      <height>371</height>
+      <width>531</width>
+      <height>471</height>
      </rect>
     </property>
     <property name="mouseTracking">
@@ -293,15 +267,15 @@
      <number>0</number>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="page">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>371</width>
-       <height>206</height>
+       <width>531</width>
+       <height>363</height>
       </rect>
      </property>
      <attribute name="label">
@@ -453,8 +427,8 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>371</width>
-       <height>206</height>
+       <width>531</width>
+       <height>363</height>
       </rect>
      </property>
      <attribute name="label">
@@ -463,8 +437,8 @@
      <widget class="QWidget" name="gridLayoutWidget_3">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>20</y>
+        <x>0</x>
+        <y>0</y>
         <width>521</width>
         <height>197</height>
        </rect>
@@ -824,8 +798,8 @@
      <widget class="QWidget" name="horizontalLayoutWidget_2">
       <property name="geometry">
        <rect>
-        <x>239</x>
-        <y>190</y>
+        <x>370</x>
+        <y>200</y>
         <width>148</width>
         <height>41</height>
        </rect>
@@ -853,8 +827,8 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>371</width>
-       <height>206</height>
+       <width>531</width>
+       <height>363</height>
       </rect>
      </property>
      <attribute name="label">
@@ -871,23 +845,56 @@
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QLabel" name="lab_connect_staus">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QComboBox" name="cmb_port_name"/>
        </item>
        <item>
         <widget class="QPushButton" name="btn_open">
          <property name="text">
-          <string>PushButton</string>
+          <string>Connect</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_close">
+         <property name="text">
+          <string>Disconnected</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lab_connect_staus">
+         <property name="text">
+          <string>断开</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
       </layout>
+     </widget>
+     <widget class="QPlainTextEdit" name="plainTextEdit">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>50</y>
+        <width>331</width>
+        <height>61</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_measure">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>120</y>
+        <width>89</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>单次测量 </string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="page_2">
@@ -895,8 +902,8 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>371</width>
-       <height>206</height>
+       <width>531</width>
+       <height>363</height>
       </rect>
      </property>
      <attribute name="label">
@@ -1130,8 +1137,8 @@
      <widget class="QWidget" name="horizontalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>200</x>
-        <y>220</y>
+        <x>290</x>
+        <y>210</y>
         <width>169</width>
         <height>31</height>
        </rect>
@@ -1157,7 +1164,7 @@
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>230</y>
+        <y>210</y>
         <width>75</width>
         <height>23</height>
        </rect>
@@ -1167,35 +1174,12 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_laser">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>371</width>
-       <height>206</height>
-      </rect>
-     </property>
-     <attribute name="label">
-      <string>激光</string>
-     </attribute>
-     <widget class="QPlainTextEdit" name="plainTextEdit">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>50</y>
-        <width>331</width>
-        <height>181</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
    </widget>
    <widget class="QWidget" name="horizontalLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>880</x>
-      <y>680</y>
+      <x>470</x>
+      <y>660</y>
       <width>401</width>
       <height>25</height>
      </rect>
@@ -1284,7 +1268,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>690</y>
+      <y>660</y>
       <width>131</width>
       <height>19</height>
      </rect>
@@ -1296,8 +1280,8 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>1080</x>
-      <y>570</y>
+      <x>1240</x>
+      <y>580</y>
       <width>201</width>
       <height>112</height>
      </rect>
@@ -1379,8 +1363,8 @@
    <widget class="QWidget" name="gridLayoutWidget_5">
     <property name="geometry">
      <rect>
-      <x>910</x>
-      <y>500</y>
+      <x>870</x>
+      <y>620</y>
       <width>371</width>
       <height>71</height>
      </rect>
@@ -1438,8 +1422,8 @@
    <widget class="QTextEdit" name="sysOutput">
     <property name="geometry">
      <rect>
-      <x>910</x>
-      <y>440</y>
+      <x>1000</x>
+      <y>520</y>
       <width>371</width>
       <height>61</height>
      </rect>
@@ -1452,7 +1436,7 @@
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>690</y>
+      <y>660</y>
       <width>101</width>
       <height>16</height>
      </rect>
@@ -1465,7 +1449,7 @@
     <property name="geometry">
      <rect>
       <x>260</x>
-      <y>690</y>
+      <y>660</y>
       <width>101</width>
       <height>20</height>
      </rect>
@@ -1478,11 +1462,50 @@
     <property name="geometry">
      <rect>
       <x>400</x>
-      <y>680</y>
+      <y>620</y>
       <width>471</width>
       <height>31</height>
      </rect>
     </property>
+   </widget>
+   <widget class="QPushButton" name="btn_searchport">
+    <property name="geometry">
+     <rect>
+      <x>880</x>
+      <y>0</y>
+      <width>89</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Search Port</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>1370</x>
+      <y>530</y>
+      <width>69</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QRadioButton" name="radioButtonMode1">
+       <property name="text">
+        <string>模式1</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="radioButtonMode2">
+       <property name="text">
+        <string>模式2</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
  </widget>

@@ -52,7 +52,8 @@ SOURCES += \
     myaxesdriver.cpp \
     tozerothread.cpp \
     recordthread.cpp \
-    updatepicthread.cpp
+    updatepicthread.cpp \
+    laser.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -65,7 +66,8 @@ HEADERS += \
     myaxesdriver.h \
     tozerothread.h \
     recordthread.h \
-    updatepicthread.h
+    updatepicthread.h \
+    laser.h
 
 FORMS += \
         mainwindow.ui \

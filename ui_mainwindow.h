@@ -12,12 +12,14 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
@@ -55,10 +57,6 @@ public:
     QLabel *picPcl2;
     QWidget *tab_6;
     QtCharts::QChartView *pressureView;
-    QWidget *verticalLayoutWidget;
-    QVBoxLayout *verticalLayout;
-    QRadioButton *radioButtonMode1;
-    QRadioButton *radioButtonMode2;
     QToolBox *toolBox;
     QWidget *page;
     QWidget *gridLayoutWidget_4;
@@ -138,6 +136,14 @@ public:
     QRadioButton *radioButtonEnable;
     QPushButton *paraAdjustButton;
     QWidget *page_4;
+    QWidget *layoutWidget;
+    QHBoxLayout *horizontalLayout;
+    QComboBox *cmb_port_name;
+    QPushButton *btn_open;
+    QPushButton *btn_close;
+    QLabel *lab_connect_staus;
+    QPlainTextEdit *plainTextEdit;
+    QPushButton *btn_measure;
     QWidget *page_2;
     QWidget *gridLayoutWidget_2;
     QGridLayout *gridLayout_2;
@@ -205,19 +211,24 @@ public:
     QGridLayout *gridLayout_5;
     QLabel *label_40;
     QLabel *label_41;
-    QProgressBar *progressBar_3;
     QProgressBar *progressBar_4;
+    QProgressBar *progressBar_3;
     QLabel *label_26;
     QTextEdit *sysOutput;
     QCheckBox *pickPoint1;
     QCheckBox *pickPoint2;
     QTextBrowser *pointPosition;
+    QPushButton *btn_searchport;
+    QWidget *verticalLayoutWidget;
+    QVBoxLayout *verticalLayout;
+    QRadioButton *radioButtonMode1;
+    QRadioButton *radioButtonMode2;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1264, 645);
+        MainWindow->resize(1445, 690);
         MainWindow->setMinimumSize(QSize(0, 25));
         QFont font;
         font.setFamily(QStringLiteral("Adobe Devanagari"));
@@ -303,28 +314,10 @@ public:
         pressureView = new QtCharts::QChartView(tab_6);
         pressureView->setObjectName(QStringLiteral("pressureView"));
         pressureView->setGeometry(QRect(10, 10, 845, 550));
-        verticalLayoutWidget = new QWidget(tab_6);
-        verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(810, 530, 55, 41));
-        verticalLayout = new QVBoxLayout(verticalLayoutWidget);
-        verticalLayout->setSpacing(6);
-        verticalLayout->setContentsMargins(11, 11, 11, 11);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
-        radioButtonMode1 = new QRadioButton(verticalLayoutWidget);
-        radioButtonMode1->setObjectName(QStringLiteral("radioButtonMode1"));
-
-        verticalLayout->addWidget(radioButtonMode1);
-
-        radioButtonMode2 = new QRadioButton(verticalLayoutWidget);
-        radioButtonMode2->setObjectName(QStringLiteral("radioButtonMode2"));
-
-        verticalLayout->addWidget(radioButtonMode2);
-
         tabWidget->addTab(tab_6, QString());
         toolBox = new QToolBox(centralWidget);
         toolBox->setObjectName(QStringLiteral("toolBox"));
-        toolBox->setGeometry(QRect(890, 0, 371, 371));
+        toolBox->setGeometry(QRect(880, 30, 531, 471));
         toolBox->setMouseTracking(false);
         toolBox->setFocusPolicy(Qt::NoFocus);
         toolBox->setContextMenuPolicy(Qt::DefaultContextMenu);
@@ -334,7 +327,7 @@ public:
         toolBox->setLineWidth(0);
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
-        page->setGeometry(QRect(0, 0, 371, 267));
+        page->setGeometry(QRect(0, 0, 531, 363));
         gridLayoutWidget_4 = new QWidget(page);
         gridLayoutWidget_4->setObjectName(QStringLiteral("gridLayoutWidget_4"));
         gridLayoutWidget_4->setGeometry(QRect(50, 10, 271, 241));
@@ -450,10 +443,10 @@ public:
         toolBox->addItem(page, QString::fromUtf8("\345\233\276\345\203\217\345\217\202\346\225\260\350\256\276\347\275\256"));
         page_3 = new QWidget();
         page_3->setObjectName(QStringLiteral("page_3"));
-        page_3->setGeometry(QRect(0, 0, 371, 267));
+        page_3->setGeometry(QRect(0, 0, 531, 363));
         gridLayoutWidget_3 = new QWidget(page_3);
         gridLayoutWidget_3->setObjectName(QStringLiteral("gridLayoutWidget_3"));
-        gridLayoutWidget_3->setGeometry(QRect(10, 20, 410, 161));
+        gridLayoutWidget_3->setGeometry(QRect(0, 0, 521, 197));
         gridLayout_3 = new QGridLayout(gridLayoutWidget_3);
         gridLayout_3->setSpacing(6);
         gridLayout_3->setContentsMargins(11, 11, 11, 11);
@@ -744,7 +737,7 @@ public:
 
         horizontalLayoutWidget_2 = new QWidget(page_3);
         horizontalLayoutWidget_2->setObjectName(QStringLiteral("horizontalLayoutWidget_2"));
-        horizontalLayoutWidget_2->setGeometry(QRect(239, 190, 131, 41));
+        horizontalLayoutWidget_2->setGeometry(QRect(370, 200, 148, 41));
         horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget_2);
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -763,14 +756,49 @@ public:
         toolBox->addItem(page_3, QString::fromUtf8("\350\277\220\345\212\250\345\217\202\346\225\260\350\256\276\347\275\256"));
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));
-        page_4->setGeometry(QRect(0, 0, 371, 267));
+        page_4->setGeometry(QRect(0, 0, 531, 363));
+        layoutWidget = new QWidget(page_4);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(20, 20, 331, 24));
+        horizontalLayout = new QHBoxLayout(layoutWidget);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        cmb_port_name = new QComboBox(layoutWidget);
+        cmb_port_name->setObjectName(QStringLiteral("cmb_port_name"));
+
+        horizontalLayout->addWidget(cmb_port_name);
+
+        btn_open = new QPushButton(layoutWidget);
+        btn_open->setObjectName(QStringLiteral("btn_open"));
+
+        horizontalLayout->addWidget(btn_open);
+
+        btn_close = new QPushButton(layoutWidget);
+        btn_close->setObjectName(QStringLiteral("btn_close"));
+
+        horizontalLayout->addWidget(btn_close);
+
+        lab_connect_staus = new QLabel(layoutWidget);
+        lab_connect_staus->setObjectName(QStringLiteral("lab_connect_staus"));
+        lab_connect_staus->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout->addWidget(lab_connect_staus);
+
+        plainTextEdit = new QPlainTextEdit(page_4);
+        plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
+        plainTextEdit->setGeometry(QRect(20, 50, 331, 61));
+        btn_measure = new QPushButton(page_4);
+        btn_measure->setObjectName(QStringLiteral("btn_measure"));
+        btn_measure->setGeometry(QRect(20, 120, 89, 24));
         toolBox->addItem(page_4, QString::fromUtf8("\344\274\240\346\204\237\345\231\250\345\217\202\346\225\260\350\256\276\347\275\256"));
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
-        page_2->setGeometry(QRect(0, 0, 371, 267));
+        page_2->setGeometry(QRect(0, 0, 531, 363));
         gridLayoutWidget_2 = new QWidget(page_2);
         gridLayoutWidget_2->setObjectName(QStringLiteral("gridLayoutWidget_2"));
-        gridLayoutWidget_2->setGeometry(QRect(30, 0, 362, 212));
+        gridLayoutWidget_2->setGeometry(QRect(30, 0, 426, 212));
         gridLayout_2 = new QGridLayout(gridLayoutWidget_2);
         gridLayout_2->setSpacing(6);
         gridLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -944,7 +972,7 @@ public:
 
         horizontalLayoutWidget = new QWidget(page_2);
         horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(200, 220, 160, 31));
+        horizontalLayoutWidget->setGeometry(QRect(290, 210, 169, 31));
         horizontalLayout_5 = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout_5->setSpacing(6);
         horizontalLayout_5->setContentsMargins(11, 11, 11, 11);
@@ -962,11 +990,11 @@ public:
 
         testButton = new QPushButton(page_2);
         testButton->setObjectName(QStringLiteral("testButton"));
-        testButton->setGeometry(QRect(30, 230, 75, 23));
+        testButton->setGeometry(QRect(30, 210, 75, 23));
         toolBox->addItem(page_2, QString::fromUtf8("\350\277\220\345\212\250\346\216\247\345\210\266"));
         horizontalLayoutWidget_3 = new QWidget(centralWidget);
         horizontalLayoutWidget_3->setObjectName(QStringLiteral("horizontalLayoutWidget_3"));
-        horizontalLayoutWidget_3->setGeometry(QRect(890, 620, 371, 20));
+        horizontalLayoutWidget_3->setGeometry(QRect(470, 660, 401, 25));
         horizontalLayout_3 = new QHBoxLayout(horizontalLayoutWidget_3);
         horizontalLayout_3->setSpacing(6);
         horizontalLayout_3->setContentsMargins(11, 11, 11, 11);
@@ -1037,10 +1065,10 @@ public:
 
         label_33 = new QLabel(centralWidget);
         label_33->setObjectName(QStringLiteral("label_33"));
-        label_33->setGeometry(QRect(10, 620, 131, 19));
+        label_33->setGeometry(QRect(0, 660, 131, 19));
         gridLayoutWidget = new QWidget(centralWidget);
         gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(1060, 520, 201, 89));
+        gridLayoutWidget->setGeometry(QRect(1240, 580, 201, 112));
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
@@ -1089,7 +1117,7 @@ public:
 
         gridLayoutWidget_5 = new QWidget(centralWidget);
         gridLayoutWidget_5->setObjectName(QStringLiteral("gridLayoutWidget_5"));
-        gridLayoutWidget_5->setGeometry(QRect(890, 450, 371, 50));
+        gridLayoutWidget_5->setGeometry(QRect(870, 620, 371, 71));
         gridLayout_5 = new QGridLayout(gridLayoutWidget_5);
         gridLayout_5->setSpacing(6);
         gridLayout_5->setContentsMargins(11, 11, 11, 11);
@@ -1105,13 +1133,6 @@ public:
 
         gridLayout_5->addWidget(label_41, 0, 0, 1, 1);
 
-        progressBar_3 = new QProgressBar(gridLayoutWidget_5);
-        progressBar_3->setObjectName(QStringLiteral("progressBar_3"));
-        progressBar_3->setValue(24);
-        progressBar_3->setTextVisible(false);
-
-        gridLayout_5->addWidget(progressBar_3, 0, 1, 1, 1);
-
         progressBar_4 = new QProgressBar(gridLayoutWidget_5);
         progressBar_4->setObjectName(QStringLiteral("progressBar_4"));
         progressBar_4->setValue(70);
@@ -1119,29 +1140,59 @@ public:
         progressBar_4->setInvertedAppearance(false);
         progressBar_4->setTextDirection(QProgressBar::TopToBottom);
 
-        gridLayout_5->addWidget(progressBar_4, 2, 1, 1, 1);
+        gridLayout_5->addWidget(progressBar_4, 2, 2, 1, 1);
 
-        label_26 = new QLabel(centralWidget);
+        progressBar_3 = new QProgressBar(gridLayoutWidget_5);
+        progressBar_3->setObjectName(QStringLiteral("progressBar_3"));
+        progressBar_3->setValue(24);
+        progressBar_3->setTextVisible(false);
+
+        gridLayout_5->addWidget(progressBar_3, 0, 2, 1, 1);
+
+        label_26 = new QLabel(gridLayoutWidget_5);
         label_26->setObjectName(QStringLiteral("label_26"));
-        label_26->setGeometry(QRect(890, 500, 51, 16));
+
+        gridLayout_5->addWidget(label_26, 0, 1, 1, 1);
+
         sysOutput = new QTextEdit(centralWidget);
         sysOutput->setObjectName(QStringLiteral("sysOutput"));
-        sysOutput->setGeometry(QRect(890, 380, 371, 61));
+        sysOutput->setGeometry(QRect(1000, 520, 371, 61));
         sysOutput->setAcceptDrops(false);
         pickPoint1 = new QCheckBox(centralWidget);
         pickPoint1->setObjectName(QStringLiteral("pickPoint1"));
-        pickPoint1->setGeometry(QRect(170, 620, 101, 16));
+        pickPoint1->setGeometry(QRect(160, 660, 101, 16));
         pickPoint2 = new QCheckBox(centralWidget);
         pickPoint2->setObjectName(QStringLiteral("pickPoint2"));
-        pickPoint2->setGeometry(QRect(270, 620, 101, 20));
+        pickPoint2->setGeometry(QRect(260, 660, 101, 20));
         pointPosition = new QTextBrowser(centralWidget);
         pointPosition->setObjectName(QStringLiteral("pointPosition"));
-        pointPosition->setGeometry(QRect(390, 610, 471, 31));
+        pointPosition->setGeometry(QRect(400, 620, 471, 31));
+        btn_searchport = new QPushButton(centralWidget);
+        btn_searchport->setObjectName(QStringLiteral("btn_searchport"));
+        btn_searchport->setGeometry(QRect(880, 0, 89, 24));
+        verticalLayoutWidget = new QWidget(centralWidget);
+        verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
+        verticalLayoutWidget->setGeometry(QRect(1370, 530, 69, 51));
+        verticalLayout = new QVBoxLayout(verticalLayoutWidget);
+        verticalLayout->setSpacing(6);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        radioButtonMode1 = new QRadioButton(verticalLayoutWidget);
+        radioButtonMode1->setObjectName(QStringLiteral("radioButtonMode1"));
+
+        verticalLayout->addWidget(radioButtonMode1);
+
+        radioButtonMode2 = new QRadioButton(verticalLayoutWidget);
+        radioButtonMode2->setObjectName(QStringLiteral("radioButtonMode2"));
+
+        verticalLayout->addWidget(radioButtonMode2);
+
         MainWindow->setCentralWidget(centralWidget);
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(2);
         toolBox->setCurrentIndex(3);
         buttonHoming->setDefault(true);
 
@@ -1165,8 +1216,6 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "\345\210\206\345\211\262", nullptr));
         picPcl2->setText(QApplication::translate("MainWindow", "\344\270\211\347\273\264\345\233\276", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_5), QApplication::translate("MainWindow", "\344\270\211\347\273\264", nullptr));
-        radioButtonMode1->setText(QApplication::translate("MainWindow", "\346\250\241\345\274\2171", nullptr));
-        radioButtonMode2->setText(QApplication::translate("MainWindow", "\346\250\241\345\274\2172", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_6), QApplication::translate("MainWindow", "\345\212\233", nullptr));
         label_35->setText(QApplication::translate("MainWindow", "<html><head/><body><p>\345\210\206\345\211\262\351\230\210\345\200\274\357\274\232</p></body></html>", nullptr));
         label_34->setText(QApplication::translate("MainWindow", "\345\257\271\346\257\224\345\272\246\357\274\232", nullptr));
@@ -1191,6 +1240,10 @@ public:
         radioButtonEnable->setText(QApplication::translate("MainWindow", "\344\275\277\350\203\275", nullptr));
         paraAdjustButton->setText(QApplication::translate("MainWindow", "\345\217\202\346\225\260\350\260\203\346\225\264", nullptr));
         toolBox->setItemText(toolBox->indexOf(page_3), QApplication::translate("MainWindow", "\350\277\220\345\212\250\345\217\202\346\225\260\350\256\276\347\275\256", nullptr));
+        btn_open->setText(QApplication::translate("MainWindow", "Connect", nullptr));
+        btn_close->setText(QApplication::translate("MainWindow", "Disconnected", nullptr));
+        lab_connect_staus->setText(QApplication::translate("MainWindow", "\346\226\255\345\274\200", nullptr));
+        btn_measure->setText(QApplication::translate("MainWindow", "\345\215\225\346\254\241\346\265\213\351\207\217 ", nullptr));
         toolBox->setItemText(toolBox->indexOf(page_4), QApplication::translate("MainWindow", "\344\274\240\346\204\237\345\231\250\345\217\202\346\225\260\350\256\276\347\275\256", nullptr));
         pitchPosMinus->setText(QApplication::translate("MainWindow", "-", nullptr));
         zPosMinus->setText(QApplication::translate("MainWindow", "-", nullptr));
@@ -1238,6 +1291,9 @@ public:
         label_26->setText(QApplication::translate("MainWindow", "\347\251\277\345\210\272\344\270\255\342\200\246\342\200\246", nullptr));
         pickPoint1->setText(QApplication::translate("MainWindow", "Pick Point1", nullptr));
         pickPoint2->setText(QApplication::translate("MainWindow", "Pick Point2", nullptr));
+        btn_searchport->setText(QApplication::translate("MainWindow", "Search Port", nullptr));
+        radioButtonMode1->setText(QApplication::translate("MainWindow", "\346\250\241\345\274\2171", nullptr));
+        radioButtonMode2->setText(QApplication::translate("MainWindow", "\346\250\241\345\274\2172", nullptr));
     } // retranslateUi
 
 };

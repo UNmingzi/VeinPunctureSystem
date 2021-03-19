@@ -15,6 +15,7 @@
 #include <QBrush>
 #include <QFont>
 #include <QPainter>
+#include <QChar>
 #include "updatepicthread.h"
 
 bool widget_flag=0;
@@ -29,6 +30,7 @@ static SafeThread *threadSafe;
 static ToZeroThread *threadZero;                                  //线程对象指针
 static RecordThread *threadRecord;
 static MyAxesDriver *axesControl;                                 //轴控制指针
+static Laser *laser;                                              //laser对象指针
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -76,9 +78,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(timer, SIGNAL(timeout()), this, SLOT(updateWatch()));                       //关联定时器计满信号和响应的槽函数
     timer->start(50);                                                                  //主线程定时器开始，并设置定时器触发槽函数的时间
 
+    //激光串口连接
+    connect(&laserPort,&QSerialPort::readyRead,this,&MainWindow::laser_receive_data);
+
     //串口初始化
-    m_serialPort = new QSerialPort();
-    m_portNameList = getPortNameList();
+//    m_serialPort = new QSerialPort();
+//    m_portNameList = getPortNameList();
 //    QString tmp0 =  m_portNameList.at(0);
 //    qDebug()<<"tmp0 ="<< tmp0;
 //    QString tmp1 =  m_portNameList.at(1);
@@ -111,24 +116,24 @@ void MainWindow::updateWatch()
     i+=0.2;
     if(i >= 500)
         i = 0;
-    if(ui->tabWidget->currentIndex() == 5)
-    {
-        //chartUpdate(sin(i));
-        //chartUpdate(axesControl->analogRead(0));
-//        receiveInfo();
-        int  intVar =(Motorreadforce()-2000);
+//    if(ui->tabWidget->currentIndex() == 5)
+//    {
+//        //chartUpdate(sin(i));
+//        //chartUpdate(axesControl->analogRead(0));
+////        receiveInfo();
+//        int  intVar =(Motorreadforce()-2000);
 
-        qDebug() <<"yuan="<<intVar;
-//        int  outIntVar;
-//        memcpy(&outIntVar, analogReadNum.data(), 4);
-//        qDebug() <<"now="<< outIntVar;
-if(intVar !=200)
-{
-        chartUpdate(intVar);
+//        qDebug() <<"yuan="<<intVar;
+////        int  outIntVar;
+////        memcpy(&outIntVar, analogReadNum.data(), 4);
+////        qDebug() <<"now="<< outIntVar;
+//        if(intVar !=200)
+//        {
+//                chartUpdate(intVar);
 
-      }
+//        }
 
-    }
+//    }
         //chartUpdate(12);
 
 }
@@ -194,7 +199,6 @@ QStringList MainWindow::getPortNameList()
     {
         m_serialPortName << info.portName();
         qDebug()<<"serialPortName:"<<info.portName();
-         qDebug()<<123;
     }
     return m_serialPortName;
 }
@@ -1375,3 +1379,105 @@ void  MainWindow::paintEvent(QPaintEvent *e)
 
 }
 
+void MainWindow::on_btn_open_clicked()
+{
+    QString selectedLaserPort=ui->cmb_port_name->currentText();
+
+    //fix me com端口参数合法性检验
+
+    qDebug()<<selectedLaserPort;
+
+    //port config
+    laserPort.setBaudRate(QSerialPort::Baud9600);
+    laserPort.setParity(QSerialPort::NoParity);
+    laserPort.setDataBits(QSerialPort::Data8);
+    laserPort.setStopBits(QSerialPort::OneStop);
+    laserPort.setPortName(selectedLaserPort);
+
+    laserPort.open(QIODevice::ReadWrite);
+
+    if(laserPort.isOpen())
+    {
+        qDebug()<<selectedLaserPort<<"is open.";
+        ui->lab_connect_staus->setText("连接");
+    }
+    else
+    {
+        qDebug()<<selectedLaserPort<<"connect error.";
+    }
+
+
+}
+
+void MainWindow::on_btn_close_clicked()
+{
+    QString selectedLaserPort=ui->cmb_port_name->currentText();
+
+    //fix me com端口参数合法性检验
+
+    qDebug()<<selectedLaserPort;
+
+    laserPort.close();
+
+    if(!laserPort.isOpen())
+    {
+        qDebug()<<selectedLaserPort<<"is closed.";
+        ui->lab_connect_staus->setText("断开");
+    }
+    else
+    {
+        qDebug()<<selectedLaserPort<<"disconnect error.";
+    }
+}
+
+void MainWindow::on_btn_searchport_clicked()
+{
+    ui->cmb_port_name->addItems(getPortNameList()); //激光下拉菜单列出串口号列表
+    qDebug()<<getPortNameList();
+}
+
+void MainWindow::laser_receive_data()
+{
+    QByteArray receivedData = laserPort.readAll();
+    float receivedData_float;
+
+    //检查返回值error
+    if((receivedData.toHex().at(3)=='E')||(receivedData.toHex().at(4)=='R')||(receivedData.toHex().at(5)=='R'))
+    {
+        qDebug()<<"Received laser data error.";
+    }
+    else
+    {
+        qDebug()<<"Received laser data:"<<receivedData;
+
+        receivedData_float = laserDataProcess(receivedData).toFloat();
+        qDebug()<<"Actual laser data:"<<receivedData_float;
+    }
+
+    //qDebug()<<"Received data:"<<receivedData.at(3)<<receivedData.at(2)<<receivedData.at(1);
+    //ui->plainTextEdit->insertPlainText(QString(laserDataProcess(receivedData).toHex(' ')).append(' '));
+    ui->plainTextEdit->insertPlainText(QString(laserDataProcess(receivedData)).append(' '));
+}
+
+void MainWindow::on_btn_measure_clicked()
+{
+    //发送16进制数"80060278" 单次测量
+    QByteArray sendData;
+     sendData.resize(4);
+     sendData[0] = (char)0x80;
+     sendData[1] = (char)0x06;
+     sendData[2] = (char)0x02;
+     sendData[3] = (char)0x78;
+
+    //qDebug()<<"Send data:"<<sendData.toHex();
+
+    laserPort.write(sendData);
+}
+
+QByteArray MainWindow::laserDataProcess(QByteArray data)
+{
+    data = data.right(9);
+    data = data.left(8);
+
+    return data;
+}
