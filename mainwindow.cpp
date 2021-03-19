@@ -54,7 +54,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QPalette pal = this->palette();
     pal.setBrush(backgroundRole(), QPixmap(":/picture/Image/background2.jpg"));
     setPalette(pal);
-//    picInit();                                                              //界面显示初始化
+    picInit();                                                              //界面显示初始化
 
     /*实例化对象*/
     pcMat = new TrioPC;
@@ -116,24 +116,24 @@ void MainWindow::updateWatch()
     i+=0.2;
     if(i >= 500)
         i = 0;
-//    if(ui->tabWidget->currentIndex() == 5)
-//    {
-//        //chartUpdate(sin(i));
-//        //chartUpdate(axesControl->analogRead(0));
-////        receiveInfo();
-//        int  intVar =(Motorreadforce()-2000);
+    if(ui->tabWidget->currentIndex() == 5)
+    {
+        //chartUpdate(sin(i));
+        //chartUpdate(axesControl->analogRead(0));
+//        receiveInfo();
+        int  intVar =(Motorreadforce()-2000);
 
-//        qDebug() <<"yuan="<<intVar;
-////        int  outIntVar;
-////        memcpy(&outIntVar, analogReadNum.data(), 4);
-////        qDebug() <<"now="<< outIntVar;
-//        if(intVar !=200)
-//        {
-//                chartUpdate(intVar);
+        qDebug() <<"yuan="<<intVar;
+//        int  outIntVar;
+//        memcpy(&outIntVar, analogReadNum.data(), 4);
+//        qDebug() <<"now="<< outIntVar;
+        if(intVar !=200)
+        {
+                chartUpdate(intVar);
 
-//        }
+        }
 
-//    }
+    }
         //chartUpdate(12);
 
 }
@@ -1140,7 +1140,7 @@ void MainWindow::on_run_clicked()
     dx = ds*qCos(decPosArr[3]*M_PI/180);
     dy = ds*qSin(decPosArr[3]*M_PI/180);
     //double tarPos[6] = {decPosArr[0] - dx, decPosArr[1] - dy, decPosArr[2] - dz, decPosArr[3], 5, 0};    //预穿刺点
-    double tarPos[6] ={164,17,-2,33,2,0};
+    double tarPos[6] ={164,17,-2,33,2,0};           //预先选定点
     double stepPos[6][6] = {{tarPos[0], tarPos[1], tarPos[2], tarPos[3], tarPos[4], tarPos[5]},           //运动到预穿刺点
                             {tarPos[0], tarPos[1], tarPos[2], tarPos[3], tarPos[4], tarPos[5] + 10},       //执行穿刺
                             {tarPos[0], tarPos[1], tarPos[2], tarPos[3], 16, tarPos[5] + 10},              //挑针
@@ -1336,46 +1336,46 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 
 void  MainWindow::paintEvent(QPaintEvent *e)
 {
-//    Mat RGBLeft=threadUpdatePic->RGBLeft;
-//    Mat RGBRight=threadUpdatePic->RGBRight;
-//    Mat imageCut=threadUpdatePic->imageCut;
-//    Mat dispRGB=threadUpdatePic->dispRGB;
+    Mat RGBLeft=threadUpdatePic->RGBLeft;
+    Mat RGBRight=threadUpdatePic->RGBRight;
+    Mat imageCut=threadUpdatePic->imageCut;
+    Mat dispRGB=threadUpdatePic->dispRGB;
 
-//    QImage imageLeft(RGBLeft.data,RGBLeft.cols,RGBLeft.rows,QImage::Format_RGB888);
-//    ui->picLeft2->setPixmap(QPixmap::fromImage(imageLeft));
-//    ui->picLeft2->resize(imageLeft.size());
-//    ui->picLeft2->show();
-//    imageLeft=imageLeft.scaled(320,240);
-//    ui->picLeft->setPixmap(QPixmap::fromImage(imageLeft));
-//    ui->picLeft->resize(imageLeft.size());
-//    ui->picLeft->show();
+    QImage imageLeft(RGBLeft.data,RGBLeft.cols,RGBLeft.rows,QImage::Format_RGB888);
+    ui->picLeft2->setPixmap(QPixmap::fromImage(imageLeft));
+    ui->picLeft2->resize(imageLeft.size());
+    ui->picLeft2->show();
+    imageLeft=imageLeft.scaled(320,240);
+    ui->picLeft->setPixmap(QPixmap::fromImage(imageLeft));
+    ui->picLeft->resize(imageLeft.size());
+    ui->picLeft->show();
 
-//    QImage imageRight(RGBRight.data,RGBRight.cols,RGBRight.rows,QImage::Format_RGB888);
-//    ui->picRight2->setPixmap(QPixmap::fromImage(imageRight));
-//    ui->picRight2->resize(imageRight.size());
-//    ui->picRight2->show();
-//    imageRight=imageRight.scaled(320,240);
-//    ui->picRight->setPixmap(QPixmap::fromImage(imageRight));
-//    ui->picRight->resize(imageRight.size());
-//    ui->picRight->show();
+    QImage imageRight(RGBRight.data,RGBRight.cols,RGBRight.rows,QImage::Format_RGB888);
+    ui->picRight2->setPixmap(QPixmap::fromImage(imageRight));
+    ui->picRight2->resize(imageRight.size());
+    ui->picRight2->show();
+    imageRight=imageRight.scaled(320,240);
+    ui->picRight->setPixmap(QPixmap::fromImage(imageRight));
+    ui->picRight->resize(imageRight.size());
+    ui->picRight->show();
 
-//    QImage imageCutQ(imageCut.data,imageCut.cols,imageCut.rows,QImage::Format_RGB888);
-//    ui->picCut2->setPixmap(QPixmap::fromImage(imageCutQ));
-//    ui->picCut2->resize(imageCutQ.size());
-//    ui->picCut2->show();
-//    imageCutQ=imageCutQ.scaled(320,240);
-//    ui->picCut->setPixmap(QPixmap::fromImage(imageCutQ));
-//    ui->picCut->resize(imageCutQ.size());
-//    ui->picCut->show();
+    QImage imageCutQ(imageCut.data,imageCut.cols,imageCut.rows,QImage::Format_RGB888);
+    ui->picCut2->setPixmap(QPixmap::fromImage(imageCutQ));
+    ui->picCut2->resize(imageCutQ.size());
+    ui->picCut2->show();
+    imageCutQ=imageCutQ.scaled(320,240);
+    ui->picCut->setPixmap(QPixmap::fromImage(imageCutQ));
+    ui->picCut->resize(imageCutQ.size());
+    ui->picCut->show();
 
-//    QImage imageDisp(dispRGB.data,dispRGB.cols,dispRGB.rows,QImage::Format_RGB888);
-//    ui->picPcl2->setPixmap(QPixmap::fromImage(imageDisp));
-//    ui->picPcl2->resize(imageDisp.size());
-//    ui->picPcl2->show();
-//    imageDisp=imageDisp.scaled(320,240);
-//    ui->picPcl->setPixmap(QPixmap::fromImage(imageDisp));
-//    ui->picPcl->resize(imageDisp.size());
-//    ui->picPcl->show();
+    QImage imageDisp(dispRGB.data,dispRGB.cols,dispRGB.rows,QImage::Format_RGB888);
+    ui->picPcl2->setPixmap(QPixmap::fromImage(imageDisp));
+    ui->picPcl2->resize(imageDisp.size());
+    ui->picPcl2->show();
+    imageDisp=imageDisp.scaled(320,240);
+    ui->picPcl->setPixmap(QPixmap::fromImage(imageDisp));
+    ui->picPcl->resize(imageDisp.size());
+    ui->picPcl->show();
 
 }
 
