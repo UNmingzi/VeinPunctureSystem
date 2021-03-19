@@ -73,9 +73,9 @@ public:
     void nowPositionDisplay();
     void chartUpdate(double num);
 
-    /*串口刷新*/
+//    /*串口刷新*/
     QStringList getPortNameList();//获取所有可用的串口列表
-    void openPort();//打开串口
+//    void openPort();//打开串口
 
 
 
@@ -138,13 +138,16 @@ private slots:              //信号槽？
     void on_run_clicked();
     void on_testButton_clicked();
 
-
-    //laser port slot
-    void on_btn_open_clicked();
-    void on_btn_close_clicked();
+    //search port
     void on_btn_searchport_clicked();
+    //laser port slot
+    void on_btn_open_laser_clicked();
+    void on_btn_close_laser_clicked();
     void laser_receive_data();     //laser receive data
     void on_btn_measure_clicked();
+    //linear motor port slot
+    void on_btn_open_motor_clicked();
+    void on_btn_close_motor_clicked();
 
 private:
 
@@ -159,6 +162,7 @@ private:
 
     QSerialPort laserPort;                              //激光串口变量
     QByteArray laserDataProcess(QByteArray data);       //激光返回值处理
+    QSerialPort motorPort;                              //直线电机串口变量
 
     void picInit();                                     //图像显示初始化
 

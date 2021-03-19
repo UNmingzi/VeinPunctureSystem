@@ -86,8 +86,8 @@ MainWindow::MainWindow(QWidget *parent) :
 //    m_portNameList = getPortNameList();
 //    QString tmp0 =  m_portNameList.at(0);
 //    qDebug()<<"tmp0 ="<< tmp0;
-//    QString tmp1 =  m_portNameList.at(1);
-//    qDebug()<<"tmp1 ="<< tmp1;
+////    QString tmp1 =  m_portNameList.at(1);
+////    qDebug()<<"tmp1 ="<< tmp1;
 
 //    openPort();
 }
@@ -97,11 +97,11 @@ MainWindow::~MainWindow()
     axesControl->axesOff();                                                             //轴失能
     threadSafe->closeSafeThread();
 
-    if (m_serialPort->isOpen())
-    {
-        m_serialPort->close();
-    }
-    delete m_serialPort;
+//    if (m_serialPort->isOpen())
+//    {
+//        m_serialPort->close();
+//    }
+//    delete m_serialPort;
 
     delete ui;
 }
@@ -203,30 +203,30 @@ QStringList MainWindow::getPortNameList()
     return m_serialPortName;
 }
 //打开串口
-void MainWindow::openPort()
-{
-    if(m_serialPort->isOpen())//如果串口已经打开了 先给他关闭了
-    {
-        m_serialPort->clear();
-        m_serialPort->close();
-    }
+//void MainWindow::openPort()
+//{
+//    if(m_serialPort->isOpen())//如果串口已经打开了 先给他关闭了
+//    {
+//        m_serialPort->clear();
+//        m_serialPort->close();
+//    }
 
-    //m_serialPort->setPortName(m_PortNameComboBox->currentText());//当前选择的串口名字
-    m_serialPort->setPortName(m_portNameList[0]);                   //当前指定串口
+//    //m_serialPort->setPortName(m_PortNameComboBox->currentText());//当前选择的串口名字
+//    m_serialPort->setPortName(m_portNameList[0]);                   //当前指定串口
 
-    if(!m_serialPort->open(QIODevice::ReadWrite))//用ReadWrite 的模式尝试打开串口
-    {
-        qDebug()<<"打开失败!";
-        return;
-    }
-    qDebug()<<"串口打开成功!";
-    m_serialPort->setBaudRate(QSerialPort::Baud115200,QSerialPort::AllDirections);//设置波特率和读写方向
-    m_serialPort->setDataBits(QSerialPort::Data8);      //数据位为8位
-    m_serialPort->setFlowControl(QSerialPort::NoFlowControl);//无流控制
-    m_serialPort->setParity(QSerialPort::NoParity); //无校验位
-    m_serialPort->setStopBits(QSerialPort::OneStop); //一位停止位
-    //connect(m_serialPort,SIGNAL(readyRead()),this,SLOT(receiveInfo()));
-}
+//    if(!m_serialPort->open(QIODevice::ReadWrite))//用ReadWrite 的模式尝试打开串口
+//    {
+//        qDebug()<<"打开失败!";
+//        return;
+//    }
+//    qDebug()<<"串口打开成功!";
+//    m_serialPort->setBaudRate(QSerialPort::Baud115200,QSerialPort::AllDirections);//设置波特率和读写方向
+//    m_serialPort->setDataBits(QSerialPort::Data8);      //数据位为8位
+//    m_serialPort->setFlowControl(QSerialPort::NoFlowControl);//无流控制
+//    m_serialPort->setParity(QSerialPort::NoParity); //无校验位
+//    m_serialPort->setStopBits(QSerialPort::OneStop); //一位停止位
+//    //connect(m_serialPort,SIGNAL(readyRead()),this,SLOT(receiveInfo()));
+//}
 
 //接收到单片机发送的数据进行解析
 QByteArray analogReadNum;
@@ -286,12 +286,12 @@ int  MainWindow::Motorreadforce()
      ba[6] = 0x22;
      ba[7] = 0x2a;
 
-     m_serialPort->write(ba);
+     motorPort.write(ba);
      DelayTime(2);
 
 
 
-     QByteArray temp=m_serialPort->readAll();
+     QByteArray temp=motorPort.readAll();
      QString str=temp;
 //     ui->textEdit->append(str);
      quint8 buffer[22] = {0};
@@ -370,12 +370,12 @@ int  MainWindow::Motorreadpos()
      ba[6] = 0x22;
      ba[7] = 0x2a;
 
-     m_serialPort->write(ba);
+     motorPort.write(ba);
      DelayTime(2);
 
 
 
-     QByteArray temp=m_serialPort->readAll();
+     QByteArray temp=motorPort.readAll();
      quint8 buffer[22] = {0};
      int forcevalue=0;
      if (!temp.isEmpty())
@@ -453,7 +453,7 @@ void  MainWindow::Motormove(int destination)
      ba[6] = pos-dec*256;
      ba[7] = dec;
      ba[8] = (93+pos-dec*255)-middec*256;
-      m_serialPort->write(ba);
+      motorPort.write(ba);
 
        qDebug()<<"test ="<<pos;
 }
@@ -1336,61 +1336,69 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 
 void  MainWindow::paintEvent(QPaintEvent *e)
 {
-    Mat RGBLeft=threadUpdatePic->RGBLeft;
-    Mat RGBRight=threadUpdatePic->RGBRight;
-    Mat imageCut=threadUpdatePic->imageCut;
-    Mat dispRGB=threadUpdatePic->dispRGB;
+//    Mat RGBLeft=threadUpdatePic->RGBLeft;
+//    Mat RGBRight=threadUpdatePic->RGBRight;
+//    Mat imageCut=threadUpdatePic->imageCut;
+//    Mat dispRGB=threadUpdatePic->dispRGB;
 
-    QImage imageLeft(RGBLeft.data,RGBLeft.cols,RGBLeft.rows,QImage::Format_RGB888);
-    ui->picLeft2->setPixmap(QPixmap::fromImage(imageLeft));
-    ui->picLeft2->resize(imageLeft.size());
-    ui->picLeft2->show();
-    imageLeft=imageLeft.scaled(320,240);
-    ui->picLeft->setPixmap(QPixmap::fromImage(imageLeft));
-    ui->picLeft->resize(imageLeft.size());
-    ui->picLeft->show();
+//    QImage imageLeft(RGBLeft.data,RGBLeft.cols,RGBLeft.rows,QImage::Format_RGB888);
+//    ui->picLeft2->setPixmap(QPixmap::fromImage(imageLeft));
+//    ui->picLeft2->resize(imageLeft.size());
+//    ui->picLeft2->show();
+//    imageLeft=imageLeft.scaled(320,240);
+//    ui->picLeft->setPixmap(QPixmap::fromImage(imageLeft));
+//    ui->picLeft->resize(imageLeft.size());
+//    ui->picLeft->show();
 
-    QImage imageRight(RGBRight.data,RGBRight.cols,RGBRight.rows,QImage::Format_RGB888);
-    ui->picRight2->setPixmap(QPixmap::fromImage(imageRight));
-    ui->picRight2->resize(imageRight.size());
-    ui->picRight2->show();
-    imageRight=imageRight.scaled(320,240);
-    ui->picRight->setPixmap(QPixmap::fromImage(imageRight));
-    ui->picRight->resize(imageRight.size());
-    ui->picRight->show();
+//    QImage imageRight(RGBRight.data,RGBRight.cols,RGBRight.rows,QImage::Format_RGB888);
+//    ui->picRight2->setPixmap(QPixmap::fromImage(imageRight));
+//    ui->picRight2->resize(imageRight.size());
+//    ui->picRight2->show();
+//    imageRight=imageRight.scaled(320,240);
+//    ui->picRight->setPixmap(QPixmap::fromImage(imageRight));
+//    ui->picRight->resize(imageRight.size());
+//    ui->picRight->show();
 
-    QImage imageCutQ(imageCut.data,imageCut.cols,imageCut.rows,QImage::Format_RGB888);
-    ui->picCut2->setPixmap(QPixmap::fromImage(imageCutQ));
-    ui->picCut2->resize(imageCutQ.size());
-    ui->picCut2->show();
-    imageCutQ=imageCutQ.scaled(320,240);
-    ui->picCut->setPixmap(QPixmap::fromImage(imageCutQ));
-    ui->picCut->resize(imageCutQ.size());
-    ui->picCut->show();
+//    QImage imageCutQ(imageCut.data,imageCut.cols,imageCut.rows,QImage::Format_RGB888);
+//    ui->picCut2->setPixmap(QPixmap::fromImage(imageCutQ));
+//    ui->picCut2->resize(imageCutQ.size());
+//    ui->picCut2->show();
+//    imageCutQ=imageCutQ.scaled(320,240);
+//    ui->picCut->setPixmap(QPixmap::fromImage(imageCutQ));
+//    ui->picCut->resize(imageCutQ.size());
+//    ui->picCut->show();
 
-    QImage imageDisp(dispRGB.data,dispRGB.cols,dispRGB.rows,QImage::Format_RGB888);
-    ui->picPcl2->setPixmap(QPixmap::fromImage(imageDisp));
-    ui->picPcl2->resize(imageDisp.size());
-    ui->picPcl2->show();
-    imageDisp=imageDisp.scaled(320,240);
-    ui->picPcl->setPixmap(QPixmap::fromImage(imageDisp));
-    ui->picPcl->resize(imageDisp.size());
-    ui->picPcl->show();
+//    QImage imageDisp(dispRGB.data,dispRGB.cols,dispRGB.rows,QImage::Format_RGB888);
+//    ui->picPcl2->setPixmap(QPixmap::fromImage(imageDisp));
+//    ui->picPcl2->resize(imageDisp.size());
+//    ui->picPcl2->show();
+//    imageDisp=imageDisp.scaled(320,240);
+//    ui->picPcl->setPixmap(QPixmap::fromImage(imageDisp));
+//    ui->picPcl->resize(imageDisp.size());
+//    ui->picPcl->show();
 
 }
 
-void MainWindow::on_btn_open_clicked()
+void MainWindow::on_btn_searchport_clicked()
 {
-    QString selectedLaserPort=ui->cmb_port_name->currentText();
+    ui->cmb_port_name_laser->addItems(getPortNameList()); //激光下拉菜单列出串口号列表
+    ui->cmb_port_name_motor->addItems(getPortNameList()); //直线电机下拉菜单列出串口号列表
+    qDebug()<<getPortNameList();
+}
+
+void MainWindow::on_btn_open_laser_clicked()
+{
+    QString selectedLaserPort=ui->cmb_port_name_laser->currentText();
 
     //fix me com端口参数合法性检验
 
-    qDebug()<<selectedLaserPort;
+    qDebug()<<"SelectedLaserPort:"<<selectedLaserPort;
 
     //port config
     laserPort.setBaudRate(QSerialPort::Baud9600);
     laserPort.setParity(QSerialPort::NoParity);
     laserPort.setDataBits(QSerialPort::Data8);
+    laserPort.setFlowControl(QSerialPort::NoFlowControl);//无流控制
     laserPort.setStopBits(QSerialPort::OneStop);
     laserPort.setPortName(selectedLaserPort);
 
@@ -1398,20 +1406,18 @@ void MainWindow::on_btn_open_clicked()
 
     if(laserPort.isOpen())
     {
-        qDebug()<<selectedLaserPort<<"is open.";
-        ui->lab_connect_staus->setText("连接");
+        qDebug()<<"SelectedLaserPort:"<<selectedLaserPort<<"is open.";
+        ui->lab_connect_staus_laser->setText("连接");
     }
     else
     {
-        qDebug()<<selectedLaserPort<<"connect error.";
+        qDebug()<<"SelectedLaserPort:"<<selectedLaserPort<<"connect error.";
     }
-
-
 }
 
-void MainWindow::on_btn_close_clicked()
+void MainWindow::on_btn_close_laser_clicked()
 {
-    QString selectedLaserPort=ui->cmb_port_name->currentText();
+    QString selectedLaserPort=ui->cmb_port_name_laser->currentText();
 
     //fix me com端口参数合法性检验
 
@@ -1421,25 +1427,20 @@ void MainWindow::on_btn_close_clicked()
 
     if(!laserPort.isOpen())
     {
-        qDebug()<<selectedLaserPort<<"is closed.";
-        ui->lab_connect_staus->setText("断开");
+        qDebug()<<"SelectedLaserPort:"<<selectedLaserPort<<"is closed.";
+        ui->lab_connect_staus_laser->setText("断开");
     }
     else
     {
-        qDebug()<<selectedLaserPort<<"disconnect error.";
+        qDebug()<<"SelectedLaserPort:"<<selectedLaserPort<<"disconnect error.";
     }
-}
-
-void MainWindow::on_btn_searchport_clicked()
-{
-    ui->cmb_port_name->addItems(getPortNameList()); //激光下拉菜单列出串口号列表
-    qDebug()<<getPortNameList();
 }
 
 void MainWindow::laser_receive_data()
 {
     QByteArray receivedData = laserPort.readAll();
     float receivedData_float;
+    double* actualJointsPos;
 
     //检查返回值error
     if((receivedData.toHex().at(3)=='E')||(receivedData.toHex().at(4)=='R')||(receivedData.toHex().at(5)=='R'))
@@ -1456,7 +1457,12 @@ void MainWindow::laser_receive_data()
 
     //qDebug()<<"Received data:"<<receivedData.at(3)<<receivedData.at(2)<<receivedData.at(1);
     //ui->plainTextEdit->insertPlainText(QString(laserDataProcess(receivedData).toHex(' ')).append(' '));
-    ui->plainTextEdit->insertPlainText(QString(laserDataProcess(receivedData)).append(' '));
+//    ui->plainTextEdit->insertPlainText(QString(laserDataProcess(receivedData)).append(' '));
+    //读取当前位置
+    actualJointsPos = axesControl->getNeedlePos();
+    qDebug()<<*actualJointsPos<<*(actualJointsPos+1)<<*(actualJointsPos+2)<<*(actualJointsPos+3)<<*(actualJointsPos+4)<<*(actualJointsPos+5);
+    ui->sysOutput->insertPlainText(QString("激光返回值：").append(' '));
+    ui->sysOutput->insertPlainText(QString(laserDataProcess(receivedData)).append(' '));
 }
 
 void MainWindow::on_btn_measure_clicked()
@@ -1480,4 +1486,55 @@ QByteArray MainWindow::laserDataProcess(QByteArray data)
     data = data.left(8);
 
     return data;
+}
+
+
+void MainWindow::on_btn_open_motor_clicked()
+{
+    QString selectedMotorPort=ui->cmb_port_name_motor->currentText();
+
+    //fix me com端口参数合法性检验
+
+    qDebug()<<"SelectedMotorPort:"<<selectedMotorPort;
+
+    //port config
+    motorPort.setBaudRate(QSerialPort::Baud115200);//设置波特率和读写方向
+    motorPort.setParity(QSerialPort::NoParity); //无校验位
+    motorPort.setDataBits(QSerialPort::Data8);      //数据位为8位
+    motorPort.setFlowControl(QSerialPort::NoFlowControl);//无流控制
+    motorPort.setStopBits(QSerialPort::OneStop); //一位停止位
+    motorPort.setPortName(selectedMotorPort);
+
+    motorPort.open(QIODevice::ReadWrite);
+    if(motorPort.isOpen())
+    {
+        qDebug()<<"SelectedMotorPort:"<<selectedMotorPort<<"is open.";
+        ui->lab_connect_staus_motor->setText("连接");
+    }
+    else
+    {
+        qDebug()<<"SelectedMotorPort:"<<selectedMotorPort<<"connect error.";
+    }
+
+}
+
+void MainWindow::on_btn_close_motor_clicked()
+{
+    QString selectedMotorPort=ui->cmb_port_name_motor->currentText();
+
+    //fix me com端口参数合法性检验
+
+    qDebug()<<selectedMotorPort;
+
+    motorPort.close();
+
+    if(!motorPort.isOpen())
+    {
+        qDebug()<<"SelectedMotorPort:"<<selectedMotorPort<<"is closed.";
+        ui->lab_connect_staus_motor->setText("断开");
+    }
+    else
+    {
+        qDebug()<<selectedMotorPort<<"Motor port disconnect error.";
+    }
 }

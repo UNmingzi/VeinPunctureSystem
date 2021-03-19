@@ -19,7 +19,6 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
@@ -138,12 +137,19 @@ public:
     QWidget *page_4;
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
-    QComboBox *cmb_port_name;
-    QPushButton *btn_open;
-    QPushButton *btn_close;
-    QLabel *lab_connect_staus;
-    QPlainTextEdit *plainTextEdit;
+    QComboBox *cmb_port_name_laser;
+    QPushButton *btn_open_laser;
+    QPushButton *btn_close_laser;
+    QLabel *lab_connect_staus_laser;
     QPushButton *btn_measure;
+    QWidget *layoutWidget_2;
+    QHBoxLayout *horizontalLayout_4;
+    QComboBox *cmb_port_name_motor;
+    QPushButton *btn_open_motor;
+    QPushButton *btn_close_motor;
+    QLabel *lab_connect_staus_motor;
+    QTextBrowser *textBrowser;
+    QTextBrowser *textBrowser_2;
     QWidget *page_2;
     QWidget *gridLayoutWidget_2;
     QGridLayout *gridLayout_2;
@@ -327,7 +333,7 @@ public:
         toolBox->setLineWidth(0);
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
-        page->setGeometry(QRect(0, 0, 531, 363));
+        page->setGeometry(QRect(0, 0, 531, 355));
         gridLayoutWidget_4 = new QWidget(page);
         gridLayoutWidget_4->setObjectName(QStringLiteral("gridLayoutWidget_4"));
         gridLayoutWidget_4->setGeometry(QRect(50, 10, 271, 241));
@@ -443,7 +449,7 @@ public:
         toolBox->addItem(page, QString::fromUtf8("\345\233\276\345\203\217\345\217\202\346\225\260\350\256\276\347\275\256"));
         page_3 = new QWidget();
         page_3->setObjectName(QStringLiteral("page_3"));
-        page_3->setGeometry(QRect(0, 0, 531, 363));
+        page_3->setGeometry(QRect(0, 0, 531, 355));
         gridLayoutWidget_3 = new QWidget(page_3);
         gridLayoutWidget_3->setObjectName(QStringLiteral("gridLayoutWidget_3"));
         gridLayoutWidget_3->setGeometry(QRect(0, 0, 521, 197));
@@ -756,46 +762,78 @@ public:
         toolBox->addItem(page_3, QString::fromUtf8("\350\277\220\345\212\250\345\217\202\346\225\260\350\256\276\347\275\256"));
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));
-        page_4->setGeometry(QRect(0, 0, 531, 363));
+        page_4->setGeometry(QRect(0, 0, 531, 355));
         layoutWidget = new QWidget(page_4);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(20, 20, 331, 24));
+        layoutWidget->setGeometry(QRect(100, 20, 331, 25));
         horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        cmb_port_name = new QComboBox(layoutWidget);
-        cmb_port_name->setObjectName(QStringLiteral("cmb_port_name"));
+        cmb_port_name_laser = new QComboBox(layoutWidget);
+        cmb_port_name_laser->setObjectName(QStringLiteral("cmb_port_name_laser"));
 
-        horizontalLayout->addWidget(cmb_port_name);
+        horizontalLayout->addWidget(cmb_port_name_laser);
 
-        btn_open = new QPushButton(layoutWidget);
-        btn_open->setObjectName(QStringLiteral("btn_open"));
+        btn_open_laser = new QPushButton(layoutWidget);
+        btn_open_laser->setObjectName(QStringLiteral("btn_open_laser"));
 
-        horizontalLayout->addWidget(btn_open);
+        horizontalLayout->addWidget(btn_open_laser);
 
-        btn_close = new QPushButton(layoutWidget);
-        btn_close->setObjectName(QStringLiteral("btn_close"));
+        btn_close_laser = new QPushButton(layoutWidget);
+        btn_close_laser->setObjectName(QStringLiteral("btn_close_laser"));
 
-        horizontalLayout->addWidget(btn_close);
+        horizontalLayout->addWidget(btn_close_laser);
 
-        lab_connect_staus = new QLabel(layoutWidget);
-        lab_connect_staus->setObjectName(QStringLiteral("lab_connect_staus"));
-        lab_connect_staus->setAlignment(Qt::AlignCenter);
+        lab_connect_staus_laser = new QLabel(layoutWidget);
+        lab_connect_staus_laser->setObjectName(QStringLiteral("lab_connect_staus_laser"));
+        lab_connect_staus_laser->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout->addWidget(lab_connect_staus);
+        horizontalLayout->addWidget(lab_connect_staus_laser);
 
-        plainTextEdit = new QPlainTextEdit(page_4);
-        plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
-        plainTextEdit->setGeometry(QRect(20, 50, 331, 61));
         btn_measure = new QPushButton(page_4);
         btn_measure->setObjectName(QStringLiteral("btn_measure"));
-        btn_measure->setGeometry(QRect(20, 120, 89, 24));
-        toolBox->addItem(page_4, QString::fromUtf8("\344\274\240\346\204\237\345\231\250\345\217\202\346\225\260\350\256\276\347\275\256"));
+        btn_measure->setGeometry(QRect(440, 20, 89, 24));
+        layoutWidget_2 = new QWidget(page_4);
+        layoutWidget_2->setObjectName(QStringLiteral("layoutWidget_2"));
+        layoutWidget_2->setGeometry(QRect(100, 50, 331, 25));
+        horizontalLayout_4 = new QHBoxLayout(layoutWidget_2);
+        horizontalLayout_4->setSpacing(6);
+        horizontalLayout_4->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
+        cmb_port_name_motor = new QComboBox(layoutWidget_2);
+        cmb_port_name_motor->setObjectName(QStringLiteral("cmb_port_name_motor"));
+
+        horizontalLayout_4->addWidget(cmb_port_name_motor);
+
+        btn_open_motor = new QPushButton(layoutWidget_2);
+        btn_open_motor->setObjectName(QStringLiteral("btn_open_motor"));
+
+        horizontalLayout_4->addWidget(btn_open_motor);
+
+        btn_close_motor = new QPushButton(layoutWidget_2);
+        btn_close_motor->setObjectName(QStringLiteral("btn_close_motor"));
+
+        horizontalLayout_4->addWidget(btn_close_motor);
+
+        lab_connect_staus_motor = new QLabel(layoutWidget_2);
+        lab_connect_staus_motor->setObjectName(QStringLiteral("lab_connect_staus_motor"));
+        lab_connect_staus_motor->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_4->addWidget(lab_connect_staus_motor);
+
+        textBrowser = new QTextBrowser(page_4);
+        textBrowser->setObjectName(QStringLiteral("textBrowser"));
+        textBrowser->setGeometry(QRect(20, 20, 71, 31));
+        textBrowser_2 = new QTextBrowser(page_4);
+        textBrowser_2->setObjectName(QStringLiteral("textBrowser_2"));
+        textBrowser_2->setGeometry(QRect(20, 50, 71, 31));
+        toolBox->addItem(page_4, QString::fromUtf8("\345\244\226\350\256\276\344\270\262\345\217\243\345\210\235\345\247\213\345\214\226"));
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
-        page_2->setGeometry(QRect(0, 0, 531, 363));
+        page_2->setGeometry(QRect(0, 0, 531, 355));
         gridLayoutWidget_2 = new QWidget(page_2);
         gridLayoutWidget_2->setObjectName(QStringLiteral("gridLayoutWidget_2"));
         gridLayoutWidget_2->setGeometry(QRect(30, 0, 426, 212));
@@ -1156,7 +1194,7 @@ public:
 
         sysOutput = new QTextEdit(centralWidget);
         sysOutput->setObjectName(QStringLiteral("sysOutput"));
-        sysOutput->setGeometry(QRect(1000, 520, 371, 61));
+        sysOutput->setGeometry(QRect(880, 560, 371, 61));
         sysOutput->setAcceptDrops(false);
         pickPoint1 = new QCheckBox(centralWidget);
         pickPoint1->setObjectName(QStringLiteral("pickPoint1"));
@@ -1172,7 +1210,7 @@ public:
         btn_searchport->setGeometry(QRect(880, 0, 89, 24));
         verticalLayoutWidget = new QWidget(centralWidget);
         verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(1370, 530, 69, 51));
+        verticalLayoutWidget->setGeometry(QRect(1370, 520, 69, 56));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -1193,7 +1231,7 @@ public:
         retranslateUi(MainWindow);
 
         tabWidget->setCurrentIndex(2);
-        toolBox->setCurrentIndex(3);
+        toolBox->setCurrentIndex(2);
         buttonHoming->setDefault(true);
 
 
@@ -1240,11 +1278,24 @@ public:
         radioButtonEnable->setText(QApplication::translate("MainWindow", "\344\275\277\350\203\275", nullptr));
         paraAdjustButton->setText(QApplication::translate("MainWindow", "\345\217\202\346\225\260\350\260\203\346\225\264", nullptr));
         toolBox->setItemText(toolBox->indexOf(page_3), QApplication::translate("MainWindow", "\350\277\220\345\212\250\345\217\202\346\225\260\350\256\276\347\275\256", nullptr));
-        btn_open->setText(QApplication::translate("MainWindow", "Connect", nullptr));
-        btn_close->setText(QApplication::translate("MainWindow", "Disconnected", nullptr));
-        lab_connect_staus->setText(QApplication::translate("MainWindow", "\346\226\255\345\274\200", nullptr));
+        btn_open_laser->setText(QApplication::translate("MainWindow", "Connect", nullptr));
+        btn_close_laser->setText(QApplication::translate("MainWindow", "Disconnected", nullptr));
+        lab_connect_staus_laser->setText(QApplication::translate("MainWindow", "\346\226\255\345\274\200", nullptr));
         btn_measure->setText(QApplication::translate("MainWindow", "\345\215\225\346\254\241\346\265\213\351\207\217 ", nullptr));
-        toolBox->setItemText(toolBox->indexOf(page_4), QApplication::translate("MainWindow", "\344\274\240\346\204\237\345\231\250\345\217\202\346\225\260\350\256\276\347\275\256", nullptr));
+        btn_open_motor->setText(QApplication::translate("MainWindow", "Connect", nullptr));
+        btn_close_motor->setText(QApplication::translate("MainWindow", "Disconnected", nullptr));
+        lab_connect_staus_motor->setText(QApplication::translate("MainWindow", "\346\226\255\345\274\200", nullptr));
+        textBrowser->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'SimSun'; font-size:11.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\346\277\200\345\205\211</p></body></html>", nullptr));
+        textBrowser_2->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'SimSun'; font-size:11.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\347\233\264\347\272\277\347\224\265\346\234\272</p></body></html>", nullptr));
+        toolBox->setItemText(toolBox->indexOf(page_4), QApplication::translate("MainWindow", "\345\244\226\350\256\276\344\270\262\345\217\243\345\210\235\345\247\213\345\214\226", nullptr));
         pitchPosMinus->setText(QApplication::translate("MainWindow", "-", nullptr));
         zPosMinus->setText(QApplication::translate("MainWindow", "-", nullptr));
         zPosAdd->setText(QApplication::translate("MainWindow", "+", nullptr));

@@ -267,7 +267,7 @@
      <number>0</number>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="page">
      <property name="geometry">
@@ -275,7 +275,7 @@
        <x>0</x>
        <y>0</y>
        <width>531</width>
-       <height>363</height>
+       <height>355</height>
       </rect>
      </property>
      <attribute name="label">
@@ -428,7 +428,7 @@
        <x>0</x>
        <y>0</y>
        <width>531</width>
-       <height>363</height>
+       <height>355</height>
       </rect>
      </property>
      <attribute name="label">
@@ -828,41 +828,41 @@
        <x>0</x>
        <y>0</y>
        <width>531</width>
-       <height>363</height>
+       <height>355</height>
       </rect>
      </property>
      <attribute name="label">
-      <string>传感器参数设置</string>
+      <string>外设串口初始化</string>
      </attribute>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>100</x>
         <y>20</y>
         <width>331</width>
-        <height>24</height>
+        <height>25</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QComboBox" name="cmb_port_name"/>
+        <widget class="QComboBox" name="cmb_port_name_laser"/>
        </item>
        <item>
-        <widget class="QPushButton" name="btn_open">
+        <widget class="QPushButton" name="btn_open_laser">
          <property name="text">
           <string>Connect</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="btn_close">
+        <widget class="QPushButton" name="btn_close_laser">
          <property name="text">
           <string>Disconnected</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="lab_connect_staus">
+        <widget class="QLabel" name="lab_connect_staus_laser">
          <property name="text">
           <string>断开</string>
          </property>
@@ -873,27 +873,90 @@
        </item>
       </layout>
      </widget>
-     <widget class="QPlainTextEdit" name="plainTextEdit">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>50</y>
-        <width>331</width>
-        <height>61</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QPushButton" name="btn_measure">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>120</y>
+        <x>440</x>
+        <y>20</y>
         <width>89</width>
         <height>24</height>
        </rect>
       </property>
       <property name="text">
        <string>单次测量 </string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>50</y>
+        <width>331</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QComboBox" name="cmb_port_name_motor"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_open_motor">
+         <property name="text">
+          <string>Connect</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_close_motor">
+         <property name="text">
+          <string>Disconnected</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lab_connect_staus_motor">
+         <property name="text">
+          <string>断开</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QTextBrowser" name="textBrowser">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>71</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:11.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;激光&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QTextBrowser" name="textBrowser_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>50</y>
+        <width>71</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:11.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;直线电机&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </widget>
@@ -903,7 +966,7 @@
        <x>0</x>
        <y>0</y>
        <width>531</width>
-       <height>363</height>
+       <height>355</height>
       </rect>
      </property>
      <attribute name="label">
@@ -1422,8 +1485,8 @@
    <widget class="QTextEdit" name="sysOutput">
     <property name="geometry">
      <rect>
-      <x>1000</x>
-      <y>520</y>
+      <x>880</x>
+      <y>560</y>
       <width>371</width>
       <height>61</height>
      </rect>
@@ -1485,9 +1548,9 @@
     <property name="geometry">
      <rect>
       <x>1370</x>
-      <y>530</y>
+      <y>520</y>
       <width>69</width>
-      <height>51</height>
+      <height>56</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
